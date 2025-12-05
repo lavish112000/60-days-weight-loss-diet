@@ -3,508 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bihar Wellness: 60-Day Transformation Plan</title>
+    <title>Lavanya Wellness | Premium Transformation Plan</title>
+    
+    <!-- Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-    <!-- Chosen Palette: Warm Neutrals & Organic Greens -->
-    <!-- Palette Name: 'Mithila Earth' -->
-    <!-- Colors: Background: #F5F5F0 (Stone-50), Text: #292524 (Stone-800), Accent: #65A30D (Lime-600), Secondary: #D97706 (Amber-600) -->
-
-    <style>
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #F5F5F0;
-            color: #292524;
-        }
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* Chart Container Styling - MANDATORY */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-        }
-
-        .active-tab {
-            background-color: #65A30D; /* Lime-600 */
-            color: white;
-            font-weight: bold;
-        }
-        .inactive-tab {
-            background-color: white;
-            color: #44403C;
-            border: 1px solid #E7E5E4;
-        }
-        .inactive-tab:hover {
-            background-color: #F0FDF4;
-        }
-    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
-    <!-- Application Structure Plan: 
-         1. Hero Section: Personal context recap (Bihar, female, stats) and the primary goal (8kg/2mo).
-         2. Strategic Dashboard: Visualization of the weight loss trajectory (Goal vs Time) and Macro breakdown.
-         3. The Bihar Diet Engine: An interactive meal planner tabbed by time of day (Morning -> Dinner). 
-            - Focuses on Sattu, Makhana, Seasonal Veggies.
-            - Includes dynamic recipe cards.
-         4. Nutrient Spotlight: Analysis of why these foods work (Fiber/Protein density) using interactive charts.
-         5. Hydration & Habits: Interactive tracker.
-         Rationale: The user needs a structured plan but also needs to understand the 'Why'. 
-         Grouping by meal time mimics daily life, while the data viz provides motivation and nutritional context.
-    -->
-
-    <!-- Header / Context -->
-    <header class="w-full bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold text-stone-800">Mithila Wellness</h1>
-                <p class="text-xs text-stone-500">Customized Plan: 58kg &rarr; 50kg</p>
-            </div>
-            <div class="hidden md:flex gap-4 text-sm font-medium text-stone-600">
-                <span>Height: 5'4"</span>
-                <span>Region: Bihar</span>
-                <span>Duration: 8 Weeks</span>
+    <!-- Navigation -->
+    <nav class="w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <h1 class="text-xl font-bold text-stone-800 tracking-tight">Lavanya<span class="text-lime-700">Wellness</span></h1>
+                </div>
+                <div class="hidden md:flex gap-6 text-sm font-medium text-stone-600">
+                    <a href="#dashboard" class="hover:text-lime-700 transition-colors">Dashboard</a>
+                    <a href="#science" class="hover:text-lime-700 transition-colors">The Science</a>
+                    <a href="#meal-plan" class="hover:text-lime-700 transition-colors">Meal Plan</a>
+                    <a href="#factors" class="hover:text-lime-700 transition-colors">Factors</a>
+                </div>
+                <div class="text-xs font-mono bg-stone-100 px-3 py-1 rounded-full text-stone-500">
+                    Target: 50kg
+                </div>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="flex-grow w-full max-w-6xl mx-auto px-4 py-8 gap-8 flex flex-col">
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 py-8 gap-12 flex flex-col">
 
-        <!-- Section 1: Introduction & Strategy -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="md:col-span-2 glass-panel rounded-xl p-6 shadow-sm">
-                <h2 class="text-2xl mb-3 text-amber-700">Your 60-Day Transformation Strategy</h2>
-                <p class="mb-4 text-stone-700 leading-relaxed">
-                    Namaste. Achieving an 8kg weight loss from 58kg (dropping to 50kg) is an ambitious goal that requires a calorie deficit combined with high nutrient density. Since you are in Bihar, we will leverage local superfoods like <strong>Sattu</strong> (high protein), <strong>Makhana</strong> (low calorie fiber), and seasonal vegetables (Parwal, Lauki).
+        <!-- Hero Section -->
+        <section id="dashboard" class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+            <!-- Left: Strategy -->
+            <div class="lg:col-span-8 glass-panel rounded-2xl p-8 relative overflow-hidden" data-aos="fade-up">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-lime-100 rounded-full blur-3xl opacity-50"></div>
+                
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-stone-800">Your Transformation <span class="text-gradient">Blueprint</span></h2>
+                <p class="text-lg text-stone-600 mb-6 leading-relaxed max-w-2xl">
+                    Welcome to your personalized 60-day journey. We are combining the ancient wisdom of <strong>Lavanya superfoods</strong> with modern nutritional science to help you shed 8kg sustainably.
                 </p>
-                <p class="text-sm text-stone-600">
-                    <strong>The Science:</strong> To lose ~1kg per week, we aim for a daily intake of roughly <strong>1200-1300 calories</strong> rich in fiber to keep you full, plus a requirement of daily 45-minute brisk walking.
-                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                    <div class="bg-white/50 p-4 rounded-xl border border-white">
+                        <div class="text-xs text-stone-500 uppercase tracking-wider mb-1">Current Weight</div>
+                        <div class="text-2xl font-bold text-stone-800">58 kg</div>
+                    </div>
+                    <div class="bg-white/50 p-4 rounded-xl border border-white">
+                        <div class="text-xs text-stone-500 uppercase tracking-wider mb-1">Goal Weight</div>
+                        <div class="text-2xl font-bold text-lime-700">50 kg</div>
+                    </div>
+                    <div class="bg-white/50 p-4 rounded-xl border border-white">
+                        <div class="text-xs text-stone-500 uppercase tracking-wider mb-1">Daily Calorie Cap</div>
+                        <div class="text-2xl font-bold text-amber-600">1,250 kcal</div>
+                    </div>
+                </div>
             </div>
-            <div class="glass-panel rounded-xl p-6 shadow-sm flex flex-col justify-center items-center text-center">
-                <div class="text-4xl font-bold text-lime-600 mb-2">1,250</div>
-                <div class="text-sm uppercase tracking-wide text-stone-500 mb-4">Daily Calorie Target</div>
-                <div class="flex gap-2">
-                    <span class="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-bold">High Protein</span>
-                    <span class="px-3 py-1 bg-lime-100 text-lime-800 rounded-full text-xs font-bold">High Fiber</span>
+
+            <!-- Right: Quick Stats -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="glass-panel rounded-2xl p-6" data-aos="fade-left" data-aos-delay="100">
+                    <h3 class="text-lg font-semibold mb-4">Progress Trajectory</h3>
+                    <div class="chart-container" style="height: 200px;">
+                        <canvas id="weightChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Projections & Macros (Data Viz) -->
-        <!-- Visualization & Content Choices:
-             - Line Chart: Shows the ideal linear weight loss path over 8 weeks to visualize the journey.
-             - Doughnut Chart: Illustrates the macro split (Protein/Fat/Carb) emphasizing the shift from carb-heavy to protein-balanced.
-             - Interaction: Hover for details.
-             - Library: Chart.js for smooth animations and responsive container adherence.
-        -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Weight Loss Trajectory -->
-            <div class="bg-white rounded-xl p-6 shadow-sm">
-                <h3 class="text-lg font-semibold mb-2">Projected Progress Timeline</h3>
-                <p class="text-xs text-stone-500 mb-4">Tracking your weight drop from 58kg to 50kg over 8 weeks.</p>
-                <div class="chart-container">
-                    <canvas id="weightChart"></canvas>
-                </div>
+        <!-- Section: The Science (New) -->
+        <section id="science" class="py-8" data-aos="fade-up">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4">The Science of <span class="text-lime-700">Fat Loss</span></h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">Weight loss isn't magic; it's biology. Here is exactly how your body will burn fat over the next 60 days.</p>
             </div>
 
-            <!-- Macro Breakdown -->
-            <div class="bg-white rounded-xl p-6 shadow-sm">
-                <h3 class="text-lg font-semibold mb-2">The "Satiety" Macro Split</h3>
-                <p class="text-xs text-stone-500 mb-4">Focusing on Protein and Fiber to suppress appetite naturally.</p>
-                <div class="chart-container">
-                    <canvas id="macroChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 3: The Interactive Diet Plan -->
-        <section class="w-full">
-            <h2 class="text-2xl mb-4 text-stone-800 border-l-4 border-lime-600 pl-4">Daily Meal Planner & Recipes</h2>
-            <p class="mb-6 text-stone-600 max-w-3xl">
-                Select a time of day below to see your tailored Bihari diet plan. These meals are designed to be high volume but low calorie. 
-                <br><em>Click "View Recipe" for preparation steps.</em>
-            </p>
-
-            <!-- Navigation Tabs -->
-            <div class="flex flex-wrap gap-2 mb-6" id="meal-tabs">
-                <button onclick="switchTab('morning')" class="tab-btn active-tab px-6 py-2 rounded-full transition-all duration-300 shadow-sm" data-tab="morning">Early Morning</button>
-                <button onclick="switchTab('breakfast')" class="tab-btn inactive-tab px-6 py-2 rounded-full transition-all duration-300 shadow-sm" data-tab="breakfast">Breakfast</button>
-                <button onclick="switchTab('lunch')" class="tab-btn inactive-tab px-6 py-2 rounded-full transition-all duration-300 shadow-sm" data-tab="lunch">Lunch</button>
-                <button onclick="switchTab('snack')" class="tab-btn inactive-tab px-6 py-2 rounded-full transition-all duration-300 shadow-sm" data-tab="snack">Evening Snack</button>
-                <button onclick="switchTab('dinner')" class="tab-btn inactive-tab px-6 py-2 rounded-full transition-all duration-300 shadow-sm" data-tab="dinner">Dinner</button>
-            </div>
-
-            <!-- Dynamic Content Area -->
-            <div id="meal-content" class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
-                <!-- Content injected via JS -->
-            </div>
-        </section>
-
-        <!-- Section 4: Nutrient Density Analysis (Plotly) -->
-        <!-- Visualization: Bar chart comparing specific Bihari diet foods vs standard options to prove nutrient density. -->
-        <section class="bg-stone-800 text-stone-100 rounded-2xl p-8 shadow-lg mt-4">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                <div class="lg:col-span-1">
-                    <h3 class="text-2xl font-bold text-lime-400 mb-4">Why Sattu & Dal?</h3>
-                    <p class="text-stone-300 mb-4 leading-relaxed">
-                        To lose weight without feeling weak, we prioritize <strong>Nutrient Density</strong> over empty calories. 
-                        The chart shows how your prescribed breakfast (Sattu Drink) compares to a standard Toast/Biscuit breakfast in terms of Protein.
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-lime-600">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold mb-2">Caloric Deficit</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        We are creating a ~500 calorie daily deficit. This forces your body to tap into stored adipose tissue (fat) for energy, resulting in approx 0.5-0.8kg loss per week.
                     </p>
-                    <div class="p-4 bg-stone-700 rounded-lg border-l-4 border-amber-500">
-                        <p class="text-sm italic">"Sattu is the poor man's protein but the wise woman's superfood. It cools the body and builds muscle."</p>
-                    </div>
                 </div>
-                <div class="lg:col-span-2">
-                    <div class="chart-container" style="height: 350px;">
-                        <div id="nutrientPlot"></div>
-                    </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-amber-500">
+                    <div class="text-4xl mb-4">🧬</div>
+                    <h3 class="text-xl font-bold mb-2">Insulin Control</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        By reducing refined sugars and focusing on complex carbs (Sattu, Oats), we keep insulin low. Low insulin = Fat Burning Mode. High insulin = Fat Storage Mode.
+                    </p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border-t-4 border-blue-500">
+                    <div class="text-4xl mb-4">💧</div>
+                    <h3 class="text-xl font-bold mb-2">Thermic Effect</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Protein has a high Thermic Effect of Food (TEF). Your body burns 20-30% of protein calories just digesting it. This is why our diet is protein-forward.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: Hydration & Habits -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
-            <div class="bg-white rounded-xl p-6 shadow-sm border-t-4 border-blue-400">
-                <h3 class="text-lg font-bold text-stone-800 mb-2">Hydration Tracker</h3>
-                <p class="text-sm text-stone-500 mb-4">Water aids metabolism. Target: 3 Liters/day.</p>
-                <div class="flex items-center justify-between bg-blue-50 rounded-lg p-4">
-                    <div class="text-3xl font-bold text-blue-600" id="water-count">0 <span class="text-sm text-blue-400">glasses</span></div>
-                    <button onclick="addWater()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow transition-colors">
-                        + Add Glass (250ml)
+        <!-- Section: Meal Planner -->
+        <section id="meal-plan" class="w-full" data-aos="fade-up">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-stone-200 pb-4">
+                <div>
+                    <h2 class="text-3xl font-bold text-stone-800 mb-2">Daily Nutrition Engine</h2>
+                    <p class="text-stone-500">High volume, nutrient-dense meals designed for the Indian palate.</p>
+                </div>
+                <!-- Tabs -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="meal-tabs">
+                    <button onclick="switchTab('morning')" class="tab-btn active-tab px-5 py-2 rounded-lg text-sm font-medium" data-tab="morning">Early Morning</button>
+                    <button onclick="switchTab('breakfast')" class="tab-btn inactive-tab px-5 py-2 rounded-lg text-sm font-medium" data-tab="breakfast">Breakfast</button>
+                    <button onclick="switchTab('lunch')" class="tab-btn inactive-tab px-5 py-2 rounded-lg text-sm font-medium" data-tab="lunch">Lunch</button>
+                    <button onclick="switchTab('snack')" class="tab-btn inactive-tab px-5 py-2 rounded-lg text-sm font-medium" data-tab="snack">Snack</button>
+                    <button onclick="switchTab('dinner')" class="tab-btn inactive-tab px-5 py-2 rounded-lg text-sm font-medium" data-tab="dinner">Dinner</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Content -->
+            <div id="meal-content" class="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[300px]">
+                <!-- JS Injection -->
+            </div>
+        </section>
+
+        <!-- Section: Critical Factors (New) -->
+        <section id="factors" class="py-8" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-stone-800 mb-8 text-center">The 5 Pillars of Success</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <!-- Factor Cards -->
+                <div class="glass-panel p-4 rounded-xl text-center hover:bg-white transition-colors">
+                    <div class="text-2xl mb-2">😴</div>
+                    <h4 class="font-bold text-stone-800 mb-1">Sleep</h4>
+                    <p class="text-xs text-stone-500">7-8 hours. Poor sleep spikes cortisol, which halts fat loss.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl text-center hover:bg-white transition-colors">
+                    <div class="text-2xl mb-2">🚶‍♀️</div>
+                    <h4 class="font-bold text-stone-800 mb-1">NEAT</h4>
+                    <p class="text-xs text-stone-500">Non-Exercise Activity. Keep moving. Don't sit for >1 hour.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl text-center hover:bg-white transition-colors">
+                    <div class="text-2xl mb-2">🧘‍♀️</div>
+                    <h4 class="font-bold text-stone-800 mb-1">Stress</h4>
+                    <p class="text-xs text-stone-500">Chronic stress leads to belly fat retention. Practice Pranayama.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl text-center hover:bg-white transition-colors">
+                    <div class="text-2xl mb-2">🥤</div>
+                    <h4 class="font-bold text-stone-800 mb-1">Hydration</h4>
+                    <p class="text-xs text-stone-500">3-4 Liters. Often thirst is mistaken for hunger.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl text-center hover:bg-white transition-colors">
+                    <div class="text-2xl mb-2">Consistency</div>
+                    <h4 class="font-bold text-stone-800 mb-1">Patience</h4>
+                    <p class="text-xs text-stone-500">You didn't gain it in a day, you won't lose it in a day.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Tools (Hydration & BMI) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-12" data-aos="fade-up">
+            <!-- Hydration -->
+            <div class="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 shadow-sm border border-blue-100">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-stone-800">Hydration Tracker</h3>
+                    <button onclick="resetWater()" class="text-xs text-blue-500 hover:text-blue-700 font-medium">Reset Day</button>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="text-5xl font-bold text-blue-600 mb-1" id="water-count">0</div>
+                        <div class="text-sm text-blue-400 font-medium">Glasses (250ml)</div>
+                    </div>
+                    <button onclick="addWater()" class="h-16 w-16 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg flex items-center justify-center text-2xl transition-transform hover:scale-110 active:scale-95">
+                        +
                     </button>
                 </div>
-                <p class="mt-3 text-xs text-stone-400 text-center">Tip: Drink 2 glasses of warm water before every meal.</p>
+                <div class="mt-6 w-full bg-blue-100 rounded-full h-2">
+                    <div id="water-progress" class="bg-blue-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
             </div>
 
-            <div class="bg-white rounded-xl p-6 shadow-sm border-t-4 border-amber-400">
-                <h3 class="text-lg font-bold text-stone-800 mb-2">Golden Rules</h3>
-                <ul class="space-y-3">
-                    <li class="flex items-start">
-                        <span class="text-green-500 mr-2">✔</span>
-                        <span class="text-sm text-stone-600"><strong>No Sugar:</strong> Replace with Jaggery (Gur) only if necessary, but avoid for 30 days.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-green-500 mr-2">✔</span>
-                        <span class="text-sm text-stone-600"><strong>Dinner by 8 PM:</strong> Give your digestion 12 hours of rest overnight.</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-green-500 mr-2">✔</span>
-                        <span class="text-sm text-stone-600"><strong>Portion Control:</strong> Use a smaller plate (katori system) for Rice/Roti.</span>
-                    </li>
-                </ul>
+            <!-- BMI -->
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-100">
+                <h3 class="text-xl font-bold text-stone-800 mb-6">BMI Calculator</h3>
+                <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="col-span-3 md:col-span-1">
+                        <label class="block text-xs font-bold text-stone-400 mb-1 uppercase">Weight (kg)</label>
+                        <input type="number" id="bmi-weight" class="w-full p-3 bg-stone-50 rounded-lg border-none focus:ring-2 focus:ring-lime-500 transition-all" placeholder="58">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-400 mb-1 uppercase">Ft</label>
+                        <input type="number" id="bmi-height-ft" class="w-full p-3 bg-stone-50 rounded-lg border-none focus:ring-2 focus:ring-lime-500 transition-all" placeholder="5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-400 mb-1 uppercase">In</label>
+                        <input type="number" id="bmi-height-in" class="w-full p-3 bg-stone-50 rounded-lg border-none focus:ring-2 focus:ring-lime-500 transition-all" placeholder="4">
+                    </div>
+                </div>
+                <button onclick="calculateBMI()" class="w-full bg-stone-800 hover:bg-black text-white font-bold py-3 rounded-lg transition-colors">
+                    Calculate BMI
+                </button>
+                <div id="bmi-result" class="mt-4 text-center hidden">
+                    <!-- Result injected here -->
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <footer class="bg-stone-900 text-stone-400 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-4">Designed for Wellness. Built with Science.</p>
+            <p class="text-xs opacity-50">&copy; 2025 Lavanya Wellness. Consult a doctor before starting any strict diet.</p>
+        </div>
+    </footer>
 
+    <script src="js/app.js"></script>
     <script>
-        // --- State Management ---
-        const state = {
-            waterGlasses: 0,
-            currentTab: 'morning'
-        };
-
-        // --- Data: Meal Plans (Bihari Context) ---
-        const mealData = {
-            morning: {
-                title: "Metabolism Kickstart (6:30 AM)",
-                calories: 20,
-                protein: "0g",
-                description: "Start your day by alkalizing your body and waking up your digestion.",
-                options: [
-                    {
-                        name: "Jeera (Cumin) Water",
-                        desc: "Boiled cumin seeds water, warm.",
-                        recipe: "Soak 1 tsp Jeera overnight in 1 glass water. Boil in morning until half. Add half lime juice.",
-                        benefits: "Improves digestion, reduces bloating."
-                    },
-                    {
-                        name: "Soaked Almonds",
-                        desc: "5 Almonds & 1 Walnut",
-                        recipe: "Soak overnight. Peel skin before eating.",
-                        benefits: "Healthy fats for brain function and satiety."
-                    }
-                ]
-            },
-            breakfast: {
-                title: "Power Breakfast (8:30 AM)",
-                calories: 300,
-                protein: "15-20g",
-                description: "High protein is non-negotiable here to prevent cravings later.",
-                options: [
-                    {
-                        name: "Bihari Sattu Sharbat",
-                        desc: "Savory protein drink.",
-                        recipe: "Mix 3 tbsp Chana Sattu in cold water. Add chopped onion, green chili, black salt, lemon juice, and roasted jeera powder. Stir well.",
-                        benefits: "Cooling, high fiber, instant energy, 20g protein."
-                    },
-                    {
-                        name: "Moong Dal Chilla",
-                        desc: "2 Savory Pancakes with Curd",
-                        recipe: "Soak yellow moong dal, grind to paste with ginger/chili. Add salt/turmeric. Spread on tawa with minimal ghee. Fill with grated paneer.",
-                        benefits: "Complex carbs and lean protein."
-                    }
-                ]
-            },
-            lunch: {
-                title: "Balanced Lunch (1:30 PM)",
-                calories: 400,
-                protein: "15g",
-                description: "Focus on fiber volume. 50% of your plate should be vegetables.",
-                options: [
-                    {
-                        name: "Traditional Thali (Modified)",
-                        desc: "1 Multigrain Roti + 1 Bowl Dal + Veggies",
-                        recipe: "Roti (Wheat + Bajra mix). Dal: Masoor or Toor with tadka (less oil). Sabzi: Lauki (Bottle Gourd) or Bhindi cooked in mustard oil.",
-                        benefits: "Complete amino acid profile when grain meets legume."
-                    },
-                    {
-                        name: "Salad First Rule",
-                        desc: "Cucumber, Radish, Tomato",
-                        recipe: "Eat a full plate of raw salad BEFORE touching the roti/rice.",
-                        benefits: "Fiber creates a mesh to slow sugar absorption."
-                    }
-                ]
-            },
-            snack: {
-                title: "Evening Fuel (5:00 PM)",
-                calories: 150,
-                protein: "5g",
-                description: "The danger zone. Avoid biscuits/namkeen entirely.",
-                options: [
-                    {
-                        name: "Roasted Makhana",
-                        desc: "Fox nuts roasted in dry pan",
-                        recipe: "Dry roast 1 cup Makhana until crisp. Sprinkle black salt and pepper. No oil needed.",
-                        benefits: "Low GI, high mineral content (Magnesium)."
-                    },
-                    {
-                        name: "Roasted Chana",
-                        desc: "Bhuna Chana (with skin)",
-                        recipe: "Small handful (30g). Have with tea (no sugar).",
-                        benefits: "Fiber bomb."
-                    }
-                ]
-            },
-            dinner: {
-                title: "Light Dinner (8:00 PM)",
-                calories: 300,
-                protein: "10g",
-                description: "Easy to digest. No raw foods at night.",
-                options: [
-                    {
-                        name: "Vegetable Dalia / Khichdi",
-                        desc: "Broken wheat porridge",
-                        recipe: "Use more vegetables (beans, carrot, peas) than grains. Cook distinct (not mushy) with turmeric.",
-                        benefits: "Warm, comforting, promotes sleep."
-                    },
-                    {
-                        name: "Papaya Bowl",
-                        desc: "If not very hungry",
-                        recipe: "1 large bowl ripe papaya with squeeze of lime.",
-                        benefits: "Natural enzymes aid digestion."
-                    }
-                ]
-            }
-        };
-
-        // --- Logic: Render Meal Content ---
-        function renderMealContent(tabKey) {
-            const container = document.getElementById('meal-content');
-            const data = mealData[tabKey];
-            
-            // Clear previous
-            container.innerHTML = '';
-
-            // Intro Card
-            const infoCard = document.createElement('div');
-            infoCard.className = "col-span-1 bg-lime-50 rounded-xl p-6 border border-lime-200";
-            infoCard.innerHTML = `
-                <h3 class="font-bold text-xl text-stone-800 mb-2">${data.title}</h3>
-                <div class="flex gap-4 mb-4 text-sm font-semibold">
-                    <span class="text-amber-600">~${data.calories} kcal</span>
-                    <span class="text-lime-700">Protein: ${data.protein}</span>
-                </div>
-                <p class="text-stone-600 text-sm leading-relaxed">${data.description}</p>
-            `;
-            container.appendChild(infoCard);
-
-            // Recipe Options
-            data.options.forEach(opt => {
-                const card = document.createElement('div');
-                card.className = "col-span-1 bg-white rounded-xl p-6 shadow-sm border border-stone-100 hover:shadow-md transition-shadow";
-                card.innerHTML = `
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-bold text-lg text-stone-800">${opt.name}</h4>
-                        <span class="text-xl">🥗</span>
-                    </div>
-                    <p class="text-sm text-stone-500 mb-4">${opt.desc}</p>
-                    <div class="bg-stone-50 p-3 rounded-lg mb-3">
-                        <p class="text-xs text-stone-700 font-mono"><strong>Recipe:</strong> ${opt.recipe}</p>
-                    </div>
-                    <p class="text-xs text-lime-600 font-semibold">✨ ${opt.benefits}</p>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // --- Logic: Tab Switching ---
-        function switchTab(tabKey) {
-            state.currentTab = tabKey;
-            
-            // Update buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                if(btn.dataset.tab === tabKey) {
-                    btn.classList.remove('inactive-tab');
-                    btn.classList.add('active-tab');
-                } else {
-                    btn.classList.add('inactive-tab');
-                    btn.classList.remove('active-tab');
-                }
-            });
-
-            // Render content
-            renderMealContent(tabKey);
-        }
-
-        // --- Logic: Hydration ---
-        function addWater() {
-            state.waterGlasses++;
-            document.getElementById('water-count').innerHTML = `${state.waterGlasses} <span class="text-sm text-blue-400">glasses</span>`;
-        }
-
-        // --- Visualization Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // Initial render
-            switchTab('morning');
-
-            // 1. Weight Chart (Chart.js)
-            const ctxWeight = document.getElementById('weightChart').getContext('2d');
-            new Chart(ctxWeight, {
-                type: 'line',
-                data: {
-                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
-                    datasets: [{
-                        label: 'Projected Weight (kg)',
-                        data: [58, 57, 56, 55, 54, 53, 52, 50],
-                        borderColor: '#65A30D', // Lime 600
-                        backgroundColor: 'rgba(101, 163, 13, 0.1)',
-                        fill: true,
-                        tension: 0.3,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#65A30D',
-                        pointRadius: 5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            min: 48,
-                            max: 60,
-                            grid: { color: '#f5f5f4' }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    }
-                }
-            });
-
-            // 2. Macro Chart (Chart.js)
-            const ctxMacro = document.getElementById('macroChart').getContext('2d');
-            new Chart(ctxMacro, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Carbs (Complex)', 'Protein', 'Healthy Fats'],
-                    datasets: [{
-                        data: [45, 30, 25],
-                        backgroundColor: [
-                            '#E7E5E4', // Stone 200 (Carbs - reduced focus)
-                            '#65A30D', // Lime 600 (Protein - Hero)
-                            '#D97706'  // Amber 600 (Fats)
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: {
-                        legend: { position: 'bottom' },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.label + ': ' + context.parsed + '%';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // 3. Nutrient Plot (Plotly)
-            // Comparison of Sattu Drink vs Tea/Biscuit for Protein
-            const trace1 = {
-                x: ['Sattu Drink', 'Tea & Biscuits'],
-                y: [20, 4],
-                name: 'Protein (g)',
-                type: 'bar',
-                marker: { color: ['#65A30D', '#A8A29E'] }
-            };
-            const trace2 = {
-                x: ['Sattu Drink', 'Tea & Biscuits'],
-                y: [8, 1],
-                name: 'Fiber (g)',
-                type: 'bar',
-                marker: { color: ['#D97706', '#D6D3D1'] }
-            };
-
-            const layout = {
-                title: { text: 'Nutrient Density Comparison', font: { color: '#ffffff' } },
-                barmode: 'group',
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: { color: '#d6d3d1' },
-                showlegend: true,
-                margin: { t: 40, b: 40, l: 40, r: 20 },
-                xaxis: { fixedrange: true },
-                yaxis: { fixedrange: true, title: 'Grams' }
-            };
-
-            Plotly.newPlot('nutrientPlot', [trace1, trace2], layout, {displayModeBar: false, responsive: true});
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
         });
-
     </script>
 </body>
 </html>

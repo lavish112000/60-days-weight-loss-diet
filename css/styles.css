@@ -1,0 +1,139 @@
+/* --- Typography & Base --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+    --color-bg: #FDFBF7; /* Cream White */
+    --color-text-main: #1C1917; /* Stone 900 */
+    --color-text-muted: #57534E; /* Stone 600 */
+    --color-primary: #3F6212; /* Lime 800 - Deep Green */
+    --color-primary-light: #ECFCCB; /* Lime 100 */
+    --color-accent: #D97706; /* Amber 600 */
+    --color-glass: rgba(255, 255, 255, 0.7);
+    --color-glass-border: rgba(255, 255, 255, 0.5);
+    --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.05);
+    --shadow-hover: 0 20px 40px -10px rgba(63, 98, 18, 0.15);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+}
+
+/* --- Utilities --- */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Components --- */
+
+/* Glassmorphism Cards */
+.glass-panel {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Chart Containers */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin: auto;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+
+/* Tabs */
+.tab-btn {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.active-tab {
+    background-color: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(63, 98, 18, 0.3);
+}
+
+.inactive-tab {
+    background-color: white;
+    color: var(--color-text-muted);
+    border: 1px solid #E7E5E4;
+}
+
+.inactive-tab:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* --- Animations --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #d6d3d1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a29e;
+}
+
+/* Recipe Card Specifics */
+.recipe-card {
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+.recipe-card:hover {
+    border-left-color: var(--color-accent);
+}
