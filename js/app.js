@@ -296,18 +296,18 @@ document.addEventListener('DOMContentLoaded', () => {
     new Chart(ctxWeight, {
         type: 'line',
         data: {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+            labels: ['Start', 'Week 2', 'Week 4', 'Week 6', 'Week 8', 'Week 10', 'Week 12'],
             datasets: [{
                 label: 'Target Weight (kg)',
-                data: [58, 57, 56, 55, 54, 53, 52, 50],
+                data: [66, 64, 62, 60, 58, 56.5, 55],
                 borderColor: '#3F6212', // Lime 800
                 backgroundColor: gradient,
                 fill: true,
                 tension: 0.4, // Smoother curve
                 pointBackgroundColor: '#fff',
                 pointBorderColor: '#3F6212',
-                pointRadius: 4,
-                pointHoverRadius: 6
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
@@ -319,13 +319,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     backgroundColor: '#1C1917',
                     padding: 12,
                     cornerRadius: 8,
-                    displayColors: false
+                    displayColors: false,
+                    callbacks: {
+                        label: function(context) {
+                            return 'Weight: ' + context.parsed.y + ' kg';
+                        }
+                    }
                 }
             },
             scales: {
                 y: {
-                    min: 48,
-                    max: 60,
+                    min: 52,
+                    max: 68,
                     grid: { color: '#f5f5f4', borderDash: [5, 5] },
                     ticks: { font: { family: 'Inter' } }
                 },
